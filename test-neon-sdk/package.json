@@ -11,22 +11,14 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@neonevm/dao-governance": "^1.0.2",
     "@neonevm/token-transfer": "^3.0.1",
-    "@solana/spl-token": "^0.3.9",
     "@solana/web3.js": "^1.87.2",
-    "add": "^2.0.6",
-    "yarn": "^1.22.21"
+    "web3": "^1.10.0"
   },
   "devDependencies": {
-    "@types/node": "^20.10.6",
     "crypto-js": "^4.2.0",
     "nodemon": "^3.0.2",
     "react": "^18.2.0",
-    "ts-loader": "^9.5.1",
-    "ts-node": "^10.9.2",
-    "ts-node-dev": "^2.0.0",
-    "tslib": "^2.6.2",
-    "typescript": "^4.9.3"
+    "ts-node-dev": "^2.0.0"
   }
 }
