@@ -3207,7 +3207,7 @@
     "randombytes" "^2.1.0"
     "utf8" "3.0.0"
 
-"web3@^1.10.0", "web3@1.10.0":
+"web3@1.10.0":
   "integrity" "sha512-YfKY9wSkGcM8seO+daR89oVTcbu18NsVfvOngzqMYGUU0pPSQmE57qQDvQzUeoIOHAnXEBNzrhjQJmm8ER0rng=="
   "resolved" "https://registry.npmjs.org/web3/-/web3-1.10.0.tgz"
   "version" "1.10.0"
