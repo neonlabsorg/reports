@@ -5,10 +5,11 @@
 // will compile your contracts, add the Hardhat Runtime Environment's members to the
 // global scope, and execute the script.
 const { ethers } = require("hardhat");
+const bs58 = require('bs58');
 
 async function main() {
     const TestContractFactory = await ethers.getContractFactory('TestContract');
-    const TestContractAddress = '';
+    const TestContractAddress = '0xf58ACd684f5aaE3F11c8648210b76D1ec02235A9';
     const solanaAccount = '0x5181e94d818ee4f3f26c9fa90443d8b894de38fd19eb8274f3747aa1e5c053da'; //6VAvEN2x6bPxBDc6xcDtnzYUw7cLziBAuadRZmmM8GJD
     let TestContract;
 
@@ -23,15 +24,21 @@ async function main() {
         );
     }
 
-    const len = await TestContract.readSolanaAccountDataLen(solanaAccount);
-    console.log(len, 'len');
+    let tokenAccountRawData = await TestContract.readSolanaDataAccountRaw(
+        solanaAccount, 
+        0, 
+        await TestContract.readSolanaDataAccountLen(solanaAccount)
+    );
+    console.log(tokenAccountRawData, 'tokenAccountRawData');
 
-    let bytesData = await TestContract.readSolanaAccountData(solanaAccount, 0, len);
-    console.log(bytesData, 'bytesData'); 
-    
-    console.log(await TestContract.toUint64(bytesData, 64), 'toUint64'); 
+    let mint = await TestContract.readSolanaDataAccountPublicKey(solanaAccount, 0, 32);
+    console.log(bs58.encode(Buffer.from(mint.slice(2), 'hex')), 'mint');
 
-    console.log(await TestContract.readLittleEndianUnsigned64(await TestContract.toUint64(bytesData, 64)), 'readLittleEndianUnsigned64');
+    let owner = await TestContract.readSolanaDataAccountPublicKey(solanaAccount, 32, 32);
+    console.log(bs58.encode(Buffer.from(owner.slice(2), 'hex')), 'owner');
+
+    let amount = await TestContract.readSolanaDataAccountAmount(solanaAccount, 64, 8);
+    console.log(amount, 'amount');
 }
 
 // We recommend this pattern to be able to use async/await everywhere

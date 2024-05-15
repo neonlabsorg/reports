@@ -1,4 +1,5 @@
 require("@nomicfoundation/hardhat-toolbox");
+require('@openzeppelin/hardhat-upgrades');
 require("dotenv").config();
 
 /** @type import('hardhat/config').HardhatUserConfig */
@@ -34,7 +35,7 @@ module.exports = {
             chainId: 245022926,
             allowUnlimitedContractSize: false,
             gas: "auto",
-            gasPrice: 500000000000,
+            gasPrice: "auto",
             isFork: true
         },
         neonmainnet: {
@@ -45,6 +46,11 @@ module.exports = {
             gas: "auto",
             gasPrice: "auto",
             isFork: true
+        },
+        sepolia: {
+            url: "https://rpc.ankr.com/eth_sepolia",
+            accounts: [process.env.PRIVATE_KEY_OWNER],
+            tags: ['test']
         }
     }
 };
